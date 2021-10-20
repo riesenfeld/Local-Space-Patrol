@@ -1,0 +1,15 @@
+/*
+*  Local Space Patrol
+*  Audio Player Styles
+*  Author: Aron Riesenfeld
+*/
+
+#audio-player {
+  width: 40%;
+  /* vertical-align: middle; */
+  background-color: aquamarine;
+  /* color: aquamarine; */
+}
+.audio-button {
+  width: 10%;
+}

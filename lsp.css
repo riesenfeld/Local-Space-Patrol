@@ -1,3 +1,9 @@
+/*
+*  Local Space Patrol
+*  Main Styles
+*  Author: Aron Riesenfeld
+*/
+
 * {
   margin: 0px;
   padding: 0px;
@@ -7,7 +13,7 @@
 
 .content {
   background: linear-gradient(to bottom, rgba(65, 225, 225, 0.8) 10%, rgba(225, 65, 172, 0.8) 30%),
-    url("space-halo-3-1626964-1599x958.jpg");
+    url("assets/space-halo-3-1626964-1599x958.jpg");
   /* Photo by <a href="/photographer/davidcowan-54040">David Cowan</a> from <a href="https://freeimages.com/">FreeImages</a> */
   background-size: cover;
   background-blend-mode: screen;

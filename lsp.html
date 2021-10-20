@@ -5,13 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Aron Riesenfeld" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" media="screen" href="lsp.css" />
-    <script src="lsp.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="audio.css" />
+    <!-- Vue 3.2.20 CDN -->
+    <script src="https://unpkg.com/vue@3.2.20/dist/vue.global.prod.js"></script>
+    <!-- <script src="playlist.js"></script> -->
+    <!-- <script src="lsp.js"></script> -->
   </head>
   <body>
-    <div class="content">
+    <div id="app" class="content">
       <nav>
         <!-- <div class="links"> -->
         <a href="">Home</a>
@@ -22,7 +27,40 @@
       </nav>
       <main>
         <h1>Local Space Patrol</h1>
+        <!-- The audio player itself is hidden and referred to by a custom player UI element -->
+        <div>
+          <audio
+            id="audio"
+            :src="currentAudioSourcePath"
+            type="audio/wav"
+            preload="metadata"
+          ></audio>
+          <div class="audio-player" v-for="track in playlist" :key="track.id">
+            <!-- <audio id="track.id" :src="track.path" type="audio/wav" preload="metadata"></audio> -->
+            <div class="audio-ui audio-title marquee">{{ track.title }}</div>
+            <button
+              v-if="currentlyPlayingTrack != key"
+              class="audio-ui audio-button audio-play"
+              @click="audioPlayPause(track.id)"
+            >
+              Play
+            </button>
+            <button v-else class="audio-ui audio-button audio-pause" @click="audioPause(this)">
+              Pause
+            </button>
+            <input type="range" class="audio-ui audio-seeker" />
+            <span class="audio-ui audio-duration"></span>
+            <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
+          </div>
+        </div>
       </main>
     </div>
+    <!-- Import Vue app -->
+    <script src="main.js"></script>
+    <!-- Mount Vue app -->
+    <script>
+      const mounted = app.mount("#app")
+      // document.getElementsByClassName("audio-title")[0].scroll(0, 1000)
+    </script>
   </body>
 </html>
