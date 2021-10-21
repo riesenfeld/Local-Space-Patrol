@@ -48,13 +48,15 @@
             <button v-else class="audio-ui audio-button audio-pause" @click="audioPause(this)">
               Pause
             </button>
+            <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
             <input type="range" class="audio-ui audio-seeker" />
             <span class="audio-ui audio-duration">{{ durations[track.id].duration }}</span>
-            <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
           </div>
         </div>
       </main>
     </div>
+    <!-- Audio data for track fetching -->
+    <script src="audiodata.js"></script>
     <!-- Import Vue app -->
     <script src="main.js"></script>
     <!-- Mount Vue app -->

@@ -11,10 +11,7 @@ const app = Vue.createApp({
         attribution:
           "Photo by David Cowan from https://freeimages.com/photographer/davidcowan-54040",
       },
-      playlist: [
-        { id: 0, title: "Hatd", path: "audio/hatd_final5.wav" },
-        { id: 1, title: "Test", path: "audio/test.wav" },
-      ],
+      playlist: audiodata,
       durations: [
         { id: 0, duration: "", currentTime: "00.00" },
         { id: 1, duration: "", currentTime: "00.00" },
@@ -24,17 +21,6 @@ const app = Vue.createApp({
     }
   },
   methods: {
-    /* Fetch audio files */
-    preloadAudio() {
-      console.log(`here`)
-      for (let track of this.playlist) {
-        let audioSource = new Audio(track.path)
-        audioSource.onloadedmetadata = () => {
-          console.log(`duration: ${audioSource.duration}`)
-          this.durations[track.id] = audioSource.duration
-        }
-      }
-    },
     formatTimestamp(time) {
       let minutes = Math.trunc(time / 60)
       let minutesString = minutes + ":"
@@ -47,6 +33,24 @@ const app = Vue.createApp({
         resultString = "0" + resultString
       }
       return minutesString + resultString
+    },
+    /* Fetch audio files */
+    preloadAudio() {
+      /*Note: May be able to reduce overhead by saving the HTMLAudioElements created herein and 
+       swapping them out on the page as needed, rather than reloading the audio every
+       time the user hits play on a different track, depending on how HTMLAudioElement
+       is handled under the hood 
+       Could have a different <audio> on the page for each track generated in the v-for*/
+      /*Can also use this function to auto-populate this.durations */
+      console.log(`here`)
+      for (let track of this.playlist) {
+        let audioSource = new Audio(track.path)
+        audioSource.onloadedmetadata = () => {
+          console.log(`duration: ${this.formatTimestamp(audioSource.duration)}`)
+          this.durations[track.id].duration = this.formatTimestamp(audioSource.duration)
+          console.log(`this.durations[${track.id}].duration: ${this.durations[track.id]}`)
+        }
+      }
     },
     audioPlayPause(id) {
       let audio = document.getElementById("audio")
@@ -78,6 +82,6 @@ const app = Vue.createApp({
     },
   },
   mounted() {
-    //  this.preloadAudio()
+    this.preloadAudio()
   },
 })
