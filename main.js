@@ -16,14 +16,38 @@ const app = Vue.createApp({
         { id: 1, title: "Test", path: "audio/test.wav" },
       ],
       durations: [
-        { id: 0, duration: "", currentTime: "0.00" },
-        { id: 1, duration: "", currentTime: "0.00" },
+        { id: 0, duration: "", currentTime: "00.00" },
+        { id: 1, duration: "", currentTime: "00.00" },
       ],
       currentAudioSourcePath: "",
       currentlyPlayingTrack: -1,
     }
   },
   methods: {
+    /* Fetch audio files */
+    preloadAudio() {
+      console.log(`here`)
+      for (let track of this.playlist) {
+        let audioSource = new Audio(track.path)
+        audioSource.onloadedmetadata = () => {
+          console.log(`duration: ${audioSource.duration}`)
+          this.durations[track.id] = audioSource.duration
+        }
+      }
+    },
+    formatTimestamp(time) {
+      let minutes = Math.trunc(time / 60)
+      let minutesString = minutes + ":"
+      if (minutes < 10) {
+        minutesString = "0" + minutesString
+      }
+      let seconds = Math.trunc(time % 60)
+      let resultString = seconds.toString()
+      if (seconds < 10) {
+        resultString = "0" + resultString
+      }
+      return minutesString + resultString
+    },
     audioPlayPause(id) {
       let audio = document.getElementById("audio")
 
@@ -45,16 +69,15 @@ const app = Vue.createApp({
         }
         audio.ontimeupdate = () => {
           /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations.currentTime*/
-          /*Add a 0 to the front when currentTime < 10 mins and < 10 secs*/
-          this.durations[id].currentTime = `${Math.trunc(audio.currentTime / 60)}:${Math.trunc(
-            audio.currentTime % 60
-          )}`
-          console.log(this.durations[id].currentTime)
+          this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
         }
       }
     },
     displayMetadata(id) {
       document.getElementById("audio-duration").innerText = formatTime(this.audio.duration)
     },
+  },
+  mounted() {
+    //  this.preloadAudio()
   },
 })
