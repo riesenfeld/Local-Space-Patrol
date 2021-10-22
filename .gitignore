@@ -6,4 +6,5 @@ old/
 # Testing modularization, not ready yet
 components/
 # Testing proper Vue SPA stuff, not ready yet
-Views/
+views/
+router/

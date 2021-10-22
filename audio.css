@@ -4,8 +4,11 @@
 *  Author: Aron Riesenfeld
 */
 
-#audio-player {
-  width: 40%;
+.audio-player {
+  margin-bottom: 1%;
+  margin-left: 10%;
+  width: 80%;
+  /* height: 20%; */
   /* vertical-align: middle; */
   background-color: aquamarine;
   /* color: aquamarine; */
@@ -20,4 +23,17 @@
   /* background-image: url("assets/play.png"); */
   height: 18px;
   width: 18px;
+}
+
+.audio-seeker {
+  width: 60%;
+  /* width: 300px; */
+}
+
+.audio-current-time {
+  margin-right: 2%;
+}
+
+.audio-duration {
+  margin-left: 2%;
 }

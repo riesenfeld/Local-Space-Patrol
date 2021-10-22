@@ -17,19 +17,18 @@
   </head>
   <body>
     <div id="app" class="content">
-      <nav>
-        <!-- <div class="links"> -->
+      <!-- nav items to come later, either as .html files or vue router links -->
+      <!-- <nav>
         <a href="/">Home</a>
         <a href="">Events</a>
         <a href="">Art</a>
         <a href="">About me</a>
-        <!-- </div> -->
-      </nav>
+      </nav> -->
       <main>
-        <h1>Local Space Patrol</h1>
-        <!-- <audio-player id="1"></audio-player> -->
+        <h1 class="header">Local Space Patrol</h1>
+        <h3 id="music-header" class="header">Music</h3>
         <!-- The audio player itself is hidden and referred to by a custom player UI element -->
-        <div>
+        <div id="audio-container">
           <audio
             id="audio"
             :src="currentAudioSourcePath"
@@ -38,7 +37,7 @@
           ></audio>
           <div class="audio-player" v-for="track in playlist" :key="track.id">
             <!-- <audio id="track.id" :src="track.path" type="audio/wav" preload="metadata"></audio> -->
-            <div class="audio-ui audio-title marquee">{{ track.title }}</div>
+            <div class="audio-ui audio-title marquee"><marquee>{{ track.title }}</marquee></div>
             <button class="audio-ui audio-button audio-play" @click="audioPlayPause(track.id)">
               <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
               <img
@@ -67,12 +66,12 @@
     <script src="audiodata.js"></script>
     <!-- Import Vue app -->
     <script src="main.js"></script>
-    <!-- Import Components -->
-    <script src="components/AudioPlayer.js"></script>
+    <!-- Import Components (These are coming later, along with maybe router views)-->
+    <!-- <script src="components/AudioPlayer.js"></script> -->
+    <!-- <script src="components/Nav.js"></script> -->
     <!-- Mount Vue app -->
     <script>
       const mounted = app.mount("#app")
-      // document.getElementsByClassName("audio-title")[0].scroll(0, 1000)
     </script>
   </body>
 </html>

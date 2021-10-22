@@ -2,7 +2,7 @@ const app = Vue.createApp({
   data: function () {
     return {
       backgroundImage: {
-        path: "./assets/space-halo-3-1626964-1599x958.jpg",
+        path: "./assets/distant-star-by-david-cowan-1629770.jpg",
         attribution:
           "Photo by David Cowan from https://freeimages.com/photographer/davidcowan-54040",
       },
@@ -96,6 +96,7 @@ const app = Vue.createApp({
         /* Reset currentTime to 00:00 when audio has finished playing */
         audio.onended = () => {
           this.durations[id].currentTime = "00:00"
+          this.durations[id].currentlyPlaying = 0
           /* seeker */
           this.durations[id].seekerCurrentTime = 0
         }
