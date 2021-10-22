@@ -47,18 +47,37 @@ main h1 {
   /* position: fixed; */
   /* left: 40%; */
   /* top: 50%; */
-  font-size: 3.5rem;
-  margin-top: 12.5%;
+  font-size: 6vw;
+  margin-top: 10vh;
+  color: blue;
+  mix-blend-mode: overlay;
   /* text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
+}
+
+main h2 {
+  margin-top: 5vh;
+  font-size: 4vw;
+  color: rgba(20, 20, 150, 1);
+  mix-blend-mode: overlay;
 }
 
 .header {
   text-align: center;
-  text-shadow: 0.5px 0.5px white;
+  text-shadow: 1px 1px palevioletred;
+}
+
+.email {
+  margin-top: 10vh;
+  font-size: 3vw;
+  text-align: center;
+  text-shadow: 1px 1px palevioletred;
+  color: blue;
+  mix-blend-mode: multiply;
 }
 
 #audio-container {
-  background-color: tomato;
-  width: 60%;
-  margin-left: 20%;
+  /* background-color: tomato; */
+  width: 66%;
+  margin-top: 5vh;
+  margin-left: 17%;
 }

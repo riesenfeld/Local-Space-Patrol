@@ -6,12 +6,12 @@
 
 .audio-player {
   margin-bottom: 1%;
-  margin-left: 10%;
-  width: 80%;
-  /* height: 20%; */
-  /* vertical-align: middle; */
-  background-color: aquamarine;
-  /* color: aquamarine; */
+  /* margin-left: 5%; */
+  width: 100%;
+  height: 10vh;
+  background-color: rgba(20, 20, 20, 0.7);
+  /* text-shadow: 0.2px 0.2px white; */
+  color: rgba(200, 200, 200, 0.85);
 }
 .audio-button {
   width: 10%;
@@ -23,17 +23,23 @@
   /* background-image: url("assets/play.png"); */
   height: 18px;
   width: 18px;
+  filter: invert(60%);
 }
 
 .audio-seeker {
   width: 60%;
-  /* width: 300px; */
 }
 
 .audio-current-time {
   margin-right: 2%;
+  width: 15%;
+  display: inline-block;
+  /* background-color: thistle; */
+  font-size: 2vw;
 }
 
 .audio-duration {
   margin-left: 2%;
+  /* background-color: thistle; */
+  font-size: 2vw;
 }
