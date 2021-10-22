@@ -38,18 +38,25 @@
           <div class="audio-player" v-for="track in playlist" :key="track.id">
             <!-- <audio id="track.id" :src="track.path" type="audio/wav" preload="metadata"></audio> -->
             <div class="audio-ui audio-title marquee">{{ track.title }}</div>
-            <button
-              v-if="currentlyPlayingTrack != key"
-              class="audio-ui audio-button audio-play"
-              @click="audioPlayPause(track.id)"
-            >
-              Play
-            </button>
-            <button v-else class="audio-ui audio-button audio-pause" @click="audioPause(this)">
-              Pause
+            <button class="audio-ui audio-button audio-play" @click="audioPlayPause(track.id)">
+              <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+              <img
+                class="audio-ui audio-icon play-icon"
+                :src="iconImages[durations[track.id].currentlyPlaying]"
+                alt="play"
+              />
             </button>
             <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
-            <input type="range" class="audio-ui audio-seeker" />
+            <input
+              type="range"
+              class="audio-ui audio-seeker"
+              :value="durations[track.id].seekerCurrentTime"
+              @mouseup="seek(track.id)"
+              @keyup="seek(track.id)"
+              min="0"
+              :max="durations[track.id].rawDuration"
+              step="0.1"
+            />
             <span class="audio-ui audio-duration">{{ durations[track.id].duration }}</span>
           </div>
         </div>

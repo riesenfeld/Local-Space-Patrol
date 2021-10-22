@@ -12,4 +12,12 @@
 }
 .audio-button {
   width: 10%;
+  background-color: transparent;
+  border: none;
+}
+
+.audio-icon {
+  /* background-image: url("assets/play.png"); */
+  height: 18px;
+  width: 18px;
 }

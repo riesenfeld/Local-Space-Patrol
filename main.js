@@ -11,10 +11,25 @@ const app = Vue.createApp({
         attribution:
           "Photo by David Cowan from https://freeimages.com/photographer/davidcowan-54040",
       },
+      iconImages: ["./assets/play.png", "./assets/pause.png"],
       playlist: audiodata,
       durations: [
-        { id: 0, duration: "", currentTime: "00.00" },
-        { id: 1, duration: "", currentTime: "00.00" },
+        {
+          id: 0,
+          duration: "",
+          rawDuration: "",
+          currentTime: "00.00",
+          seekerCurrentTime: 0,
+          currentlyPlaying: 0,
+        },
+        {
+          id: 1,
+          duration: "",
+          rawDuration: "",
+          currentTime: "00.00",
+          seekerCurrentTime: 0,
+          currentlyPlaying: 0,
+        },
       ],
       currentAudioSourcePath: "",
       currentlyPlayingTrack: -1,
@@ -42,13 +57,11 @@ const app = Vue.createApp({
        is handled under the hood 
        Could have a different <audio> on the page for each track generated in the v-for*/
       /*Can also use this function to auto-populate this.durations */
-      console.log(`here`)
       for (let track of this.playlist) {
         let audioSource = new Audio(track.path)
         audioSource.onloadedmetadata = () => {
-          console.log(`duration: ${this.formatTimestamp(audioSource.duration)}`)
           this.durations[track.id].duration = this.formatTimestamp(audioSource.duration)
-          console.log(`this.durations[${track.id}].duration: ${this.durations[track.id]}`)
+          this.durations[track.id].rawDuration = audioSource.duration
         }
       }
     },
@@ -57,11 +70,17 @@ const app = Vue.createApp({
 
       if (this.currentlyPlayingTrack == id && !audio.paused) {
         /* Pause audio */
+        this.durations[id].currentlyPlaying = 0
         audio.pause()
       } else {
         /* Play audio */
+        this.durations[id].currentlyPlaying = 1
         if (this.currentlyPlayingTrack != id) {
-          this.durations[id].currentTime = "00.00" /*NOT HERE, reset currentTime on old track.*/
+          if (this.currentlyPlayingTrack != -1) {
+            /* When switching tracks, reset currentTime on the old track to 00:00*/
+            this.durations[this.currentlyPlayingTrack].currentTime = "00.00"
+            this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+          }
           this.currentlyPlayingTrack = id
           this.currentAudioSourcePath = this.playlist[id].path
           audio.load()
@@ -74,11 +93,25 @@ const app = Vue.createApp({
         audio.ontimeupdate = () => {
           /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations.currentTime*/
           this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+          /*seeker*/
+          this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+          console.log(`currentTime for seeker = ${this.durations[id].seekerCurrentTime}`)
+        }
+        /* Reset currentTime to 00:00 when audio has finished playing */
+        audio.onended = () => {
+          this.durations[id].currentTime = "00:00"
+          /* seeker */
+          this.durations[id].seekerCurrentTime = 0
         }
       }
     },
     displayMetadata(id) {
       document.getElementById("audio-duration").innerText = formatTime(this.audio.duration)
+    },
+    seek(id) {
+      /* Changes location in the track when the seeker value is changed*/
+      let audio = document.getElementById("audio")
+      audio.currentTime = event.currentTarget.value
     },
   },
   mounted() {
