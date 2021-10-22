@@ -3,3 +3,5 @@ audiodata.js
 audio/
 assets/
 old/
+# Testing modularization, not ready yet
+components/

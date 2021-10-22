@@ -1,11 +1,6 @@
 const app = Vue.createApp({
   data: function () {
     return {
-      testData: {
-        one: "this is a test hello hello",
-        two: "this is another test",
-        three: "and another",
-      },
       backgroundImage: {
         path: "./assets/space-halo-3-1626964-1599x958.jpg",
         attribution:
@@ -80,6 +75,7 @@ const app = Vue.createApp({
             /* When switching tracks, reset currentTime on the old track to 00:00*/
             this.durations[this.currentlyPlayingTrack].currentTime = "00.00"
             this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+            this.durations[this.currentlyPlayingTrack].seekerCurrentTime = 0
           }
           this.currentlyPlayingTrack = id
           this.currentAudioSourcePath = this.playlist[id].path
@@ -105,9 +101,9 @@ const app = Vue.createApp({
         }
       }
     },
-    displayMetadata(id) {
-      document.getElementById("audio-duration").innerText = formatTime(this.audio.duration)
-    },
+    //  displayMetadata(id) {
+    //    document.getElementById("audio-duration").innerText = formatTime(this.audio.duration)
+    //  },
     seek(id) {
       /* Changes location in the track when the seeker value is changed*/
       let audio = document.getElementById("audio")
