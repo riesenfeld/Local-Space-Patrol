@@ -62,12 +62,30 @@ main h2 {
 }
 
 .email {
-  margin-top: 10vh;
+  /* margin-top: 10vh;
   font-size: 3.5vw;
   text-align: center;
   text-shadow: 1px 1px palevioletred;
   color: rgba(20, 20, 150, 1);
-  mix-blend-mode: overlay;
+  mix-blend-mode: overlay; */
+}
+footer {
+  display: flex;
+  justify-content: space-around;
+
+  position: absolute;
+  bottom: 3vh;
+  width: 100%;
+
+  font-size: 2.5vw;
+  /* color: rgba(20, 20, 150, 1); */
+  /* mix-blend-mode: difference; */
+}
+
+a {
+  color: rgba(150, 20, 150, 1);
+  text-shadow: 1px 1px rgba(20, 20, 80, 1);
+  /* mix-blend-mode: screen; */
 }
 
 #audio-container {
@@ -93,8 +111,8 @@ main h2 {
     mix-blend-mode: screen;
   }
   .email {
-    margin-top: 3vh;
-    mix-blend-mode: screen;
+    /* margin-top: 3vh; */
+    /* mix-blend-mode: screen; */
   }
   #audio-container {
     margin-top: 0vh;
