@@ -108,7 +108,6 @@ const app = Vue.createApp({
       /* Changes location in the track when the seeker value is changed*/
       let audio = document.getElementById("audio")
       audio.currentTime = parseFloat(event.currentTarget.value)
-      console.log(parseFloat(event.currentTarget.value).toFixed(1))
       this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
     },
   },
