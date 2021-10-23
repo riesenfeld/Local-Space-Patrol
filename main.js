@@ -87,7 +87,7 @@ const app = Vue.createApp({
           audio.play()
         }
         audio.ontimeupdate = () => {
-          /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations.currentTime*/
+          /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations[id].currentTime*/
           this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
           /*seeker*/
           this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
@@ -107,7 +107,9 @@ const app = Vue.createApp({
     seek(id) {
       /* Changes location in the track when the seeker value is changed*/
       let audio = document.getElementById("audio")
-      audio.currentTime = event.currentTarget.value
+      audio.currentTime = parseFloat(event.currentTarget.value)
+      console.log(parseFloat(event.currentTarget.value).toFixed(1))
+      this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
     },
   },
   mounted() {

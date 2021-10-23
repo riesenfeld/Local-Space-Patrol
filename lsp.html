@@ -50,8 +50,7 @@
               type="range"
               class="audio-ui audio-seeker"
               :value="durations[track.id].seekerCurrentTime"
-              @mouseup="seek(track.id)"
-              @keyup="seek(track.id)"
+              @change="seek(track.id)"
               min="0"
               :max="durations[track.id].rawDuration"
               step="0.1"
@@ -59,13 +58,13 @@
             <span class="audio-ui audio-duration">{{ durations[track.id].duration }}</span>
           </div>
         </div>
-        <footer>
-          <a class="email" href="mailto:localspacepatrolbooking@gmail.com"
-            >localspacepatrolbooking@gmail.com</a
-          >
-          <a class="bandcamp" href="https://localspacepatrol.bandcamp.com/">My Bandcamp</a>
-        </footer>
       </main>
+      <footer>
+        <a class="email" href="mailto:localspacepatrolbooking@gmail.com"
+          >localspacepatrolbooking@gmail.com</a
+        >
+        <a class="bandcamp" href="https://localspacepatrol.bandcamp.com/">My Bandcamp</a>
+      </footer>
     </div>
     <!-- Audio data for track fetching -->
     <script src="audiodata.js"></script>

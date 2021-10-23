@@ -38,22 +38,26 @@ nav a {
 
 main {
   width: 100%;
-  height: 80%;
+  /*Uncomment this when it's time to put the nav in*/
+  /* height: 80%; */
   display: grid;
 }
 
-main h1 {
+h1 {
+  height: 25vh;
   font-size: 6vw;
   margin-top: 10vh;
   color: rgba(20, 20, 200, 1);
   mix-blend-mode: screen;
 }
 
-main h2 {
+h2 {
   margin-top: 5vh;
+  /* padding-top: 20vh; */
+  height: 10vh;
   font-size: 4.5vw;
   color: rgba(20, 20, 150, 1);
-  mix-blend-mode: overlay;
+  mix-blend-mode: screen;
 }
 
 .header {
@@ -90,8 +94,22 @@ a {
 
 #audio-container {
   width: 66%;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
   margin-left: 17%;
+}
+
+/*Error Page Styles*/
+/************************/
+.error-message {
+  font-size: 4vw;
+  mix-blend-mode: overlay;
+}
+.link-header {
+  font-size: 6vw;
+  margin-top: 10vh;
+  color: rgba(20, 20, 200, 1);
+  mix-blend-mode: screen;
+  text-shadow: 1px 1px palevioletred;
 }
 
 /* Media Queries */
@@ -101,24 +119,33 @@ a {
 @media (max-aspect-ratio: 1/1) {
   .header {
   }
-  main h1 {
+  h1 {
     font-size: 7.5vw;
-    mix-blend-mode: screen;
+    /* mix-blend-mode: screen; */
   }
-  main h2 {
+  h2 {
     font-size: 6.5vw;
-    margin-top: 0vh;
-    mix-blend-mode: screen;
-  }
-  .email {
-    /* margin-top: 3vh; */
+    /* margin-top: 0vh; */
     /* mix-blend-mode: screen; */
   }
   #audio-container {
     margin-top: 0vh;
   }
+  .error-message {
+    /*overwrites general h2 blend-mode rule*/
+    mix-blend-mode: overlay;
+  }
+  .link-header {
+    font-size: 7.5vw;
+  }
+  footer {
+    font-size: 3vw;
+  }
 }
 
 /*If wider than 16:9*/
 @media (min-aspect-ratio: 16/9) {
+  h2 {
+    height: 20vh;
+  }
 }
