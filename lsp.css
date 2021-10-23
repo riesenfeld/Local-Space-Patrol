@@ -34,7 +34,6 @@ nav a {
   text-shadow: 0.5px 0.5px white;
   font-size: 1.2rem;
   color: black;
-  /* font-weight: bold; */
 }
 
 main {
@@ -44,14 +43,10 @@ main {
 }
 
 main h1 {
-  /* position: fixed; */
-  /* left: 40%; */
-  /* top: 50%; */
   font-size: 6vw;
   margin-top: 10vh;
   color: blue;
   mix-blend-mode: overlay;
-  /* text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff; */
 }
 
 main h2 {
@@ -76,7 +71,6 @@ main h2 {
 }
 
 #audio-container {
-  /* background-color: tomato; */
   width: 66%;
   margin-top: 5vh;
   margin-left: 17%;
