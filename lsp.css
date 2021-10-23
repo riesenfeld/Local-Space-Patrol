@@ -45,13 +45,13 @@ main {
 main h1 {
   font-size: 6vw;
   margin-top: 10vh;
-  color: blue;
-  mix-blend-mode: overlay;
+  color: rgba(20, 20, 200, 1);
+  mix-blend-mode: screen;
 }
 
 main h2 {
   margin-top: 5vh;
-  font-size: 4vw;
+  font-size: 4.5vw;
   color: rgba(20, 20, 150, 1);
   mix-blend-mode: overlay;
 }
@@ -63,15 +63,44 @@ main h2 {
 
 .email {
   margin-top: 10vh;
-  font-size: 3vw;
+  font-size: 3.5vw;
   text-align: center;
   text-shadow: 1px 1px palevioletred;
-  color: blue;
-  mix-blend-mode: multiply;
+  color: rgba(20, 20, 150, 1);
+  mix-blend-mode: overlay;
 }
 
 #audio-container {
   width: 66%;
   margin-top: 5vh;
   margin-left: 17%;
+}
+
+/* Media Queries */
+/************************/
+
+/*If height > width*/
+@media (max-aspect-ratio: 1/1) {
+  .header {
+  }
+  main h1 {
+    font-size: 7.5vw;
+    mix-blend-mode: screen;
+  }
+  main h2 {
+    font-size: 6.5vw;
+    margin-top: 0vh;
+    mix-blend-mode: screen;
+  }
+  .email {
+    margin-top: 3vh;
+    mix-blend-mode: screen;
+  }
+  #audio-container {
+    margin-top: 0vh;
+  }
+}
+
+/*If wider than 16:9*/
+@media (min-aspect-ratio: 16/9) {
 }

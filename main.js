@@ -17,14 +17,14 @@ const app = Vue.createApp({
           seekerCurrentTime: 0,
           currentlyPlaying: 0,
         },
-        {
-          id: 1,
-          duration: "",
-          rawDuration: "",
-          currentTime: "00.00",
-          seekerCurrentTime: 0,
-          currentlyPlaying: 0,
-        },
+        //   {
+        //     id: 1,
+        //     duration: "",
+        //     rawDuration: "",
+        //     currentTime: "00.00",
+        //     seekerCurrentTime: 0,
+        //     currentlyPlaying: 0,
+        //   },
       ],
       currentAudioSourcePath: "",
       currentlyPlayingTrack: -1,
@@ -91,7 +91,6 @@ const app = Vue.createApp({
           this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
           /*seeker*/
           this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
-          console.log(`currentTime for seeker = ${this.durations[id].seekerCurrentTime}`)
         }
         /* Reset currentTime to 00:00 when audio has finished playing */
         audio.onended = () => {

@@ -108,3 +108,20 @@ input[type="range"]::-ms-thumb {
   background: #a1d0ff;
   cursor: pointer;
 }
+
+/* Media Queries */
+/************************/
+
+/*If height > width*/
+@media (max-aspect-ratio: 1/1) {
+  .audio-player {
+    height: 7vh;
+  }
+}
+
+/*If wider than 16:9*/
+@media (min-aspect-ratio: 16/9) {
+  .audio-player {
+    height: 15vh;
+  }
+}
