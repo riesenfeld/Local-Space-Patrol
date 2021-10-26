@@ -1,10 +1,4 @@
-app.component("audio-player", {
-  // props: {
-  //   id: {
-  //     type: Number,
-  //     required: true,
-  //   },
-  // },
+app.component("audio-player-group", {
   template:
     /*html*/
     `<div id="audio-container">
