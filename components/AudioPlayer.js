@@ -41,11 +41,6 @@ app.component("audio-player", {
   </div>`,
   data: function () {
     return {
-      backgroundImage: {
-        path: "./assets/distant-star-by-david-cowan-1629770.jpg",
-        attribution:
-          "Photo by David Cowan from https://freeimages.com/photographer/davidcowan-54040",
-      },
       iconImages: ["./assets/play.png", "./assets/pause.png"],
       playlist: audiodata,
       durations: [
