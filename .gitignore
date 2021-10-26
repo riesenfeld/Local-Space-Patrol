@@ -4,9 +4,8 @@ audio/
 assets/
 old/
 # Testing modularization, not entirely ready yet
-# components/AudioPlayer.js
-# components/Nav.js
-components/
+components/AudioPlayer.js
+components/Nav.js
 # Testing proper Vue SPA stuff, not ready yet
 views/
 router/
