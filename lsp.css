@@ -15,7 +15,7 @@
   /*Photo by <a href="https://freeimages.com/photographer/davidcowan-54040">David Cowan</a> from <a href="https://freeimages.com">FreeImages</a>*/
   background: url("assets/distant-star-by-david-cowan-1629770.jpg");
   background-size: cover;
-  background-blend-mode: screen;
+  /* background-blend-mode: normal; */
   height: 100vh;
 }
 
@@ -87,7 +87,7 @@ footer {
   /* color: rgba(20, 20, 150, 1); */
   /* mix-blend-mode: difference; */
 }
-
+/* For footer links */
 a {
   color: rgba(150, 20, 150, 1);
   text-shadow: 1.5px 1.5px rgba(20, 20, 80, 1);
