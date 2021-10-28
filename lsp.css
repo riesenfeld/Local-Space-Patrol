@@ -126,10 +126,7 @@ a {
     align-items: center;
   }
   .nav-link {
-    /* margin-top: 3vh; */
-    /* font-size: 3.5vw; */
-    /* vertical-align: middle; */
-    /* align-items: center; */
+    font-size: 3.5vw;
   }
   h1 {
     font-size: 7.5vw;
@@ -157,6 +154,9 @@ a {
 
 /*If wider than 16:9*/
 @media (min-aspect-ratio: 16/9) {
+  .nav-link {
+    font-size: 1.8vw;
+  }
   h2 {
     height: 20vh;
   }
