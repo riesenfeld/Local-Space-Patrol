@@ -28,6 +28,7 @@ nav {
   justify-content: space-evenly;
 }
 
+/* <router-link> gets converted to <a> by Vue Router */
 nav a {
   margin-top: 10vh;
   text-decoration: none;

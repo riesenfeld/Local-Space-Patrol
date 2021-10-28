@@ -1,4 +1,4 @@
-app.component("audio-player-group", {
+const AudioPlayerGroup = {
   template:
     /*html*/
     `<div id="audio-container">
@@ -143,4 +143,6 @@ app.component("audio-player-group", {
   mounted() {
     this.preloadAudio()
   },
-})
+}
+
+app.component("audio-player-group", AudioPlayerGroup)
