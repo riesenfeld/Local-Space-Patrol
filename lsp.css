@@ -22,7 +22,7 @@
 nav {
   background: linear-gradient(to bottom, rgba(65, 225, 225, 0.4) 10%, rgba(225, 65, 172, 0.4) 80%);
   width: 100%;
-  height: 20%;
+  height: 15vh;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -30,7 +30,7 @@ nav {
 
 /* <router-link> gets converted to <a> by Vue Router */
 nav a {
-  margin-top: 10vh;
+  margin-top: 5vh;
   text-decoration: none;
   text-shadow: 0.5px 0.5px white;
   font-size: 1.2rem;
