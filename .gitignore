@@ -3,5 +3,9 @@ audiodata.js
 audio/
 assets/
 old/
-views/
+# Views other than the home page will come in Phase 2
+views/About.js
+views/Art.js
+views/Events.js
+views/Home.js
 router/
