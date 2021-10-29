@@ -4,10 +4,10 @@ app.component("info-footer", {
     /*html*/
     `
    <footer>
-         <a class="email" href="mailto:localspacepatrolbooking@gmail.com">
+         <a class="footer-link email" href="mailto:localspacepatrolbooking@gmail.com">
             localspacepatrolbooking@gmail.com
          </a>
-        <a class="bandcamp" href="https://localspacepatrol.bandcamp.com/">Bandcamp</a>
+        <a class="footer-link bandcamp" href="https://localspacepatrol.bandcamp.com/">Bandcamp</a>
    </footer>
    `,
 })

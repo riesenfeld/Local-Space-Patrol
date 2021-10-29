@@ -67,14 +67,6 @@ h2 {
   text-shadow: 1px 1px palevioletred;
 }
 
-.email {
-  /* margin-top: 10vh;
-  font-size: 3.5vw;
-  text-align: center;
-  text-shadow: 1px 1px palevioletred;
-  color: rgba(20, 20, 150, 1);
-  mix-blend-mode: overlay; */
-}
 footer {
   display: flex;
   justify-content: space-around;
@@ -84,11 +76,9 @@ footer {
   width: 100%;
 
   font-size: 2.5vw;
-  /* color: rgba(20, 20, 150, 1); */
-  /* mix-blend-mode: difference; */
 }
-/* For footer links */
-a {
+
+.footer-link {
   color: rgba(150, 20, 150, 1);
   text-shadow: 1.5px 1.5px rgba(20, 20, 80, 1);
   /* mix-blend-mode: screen; */
@@ -113,8 +103,6 @@ a {
 
 /*If height > width*/
 @media (max-aspect-ratio: 1/1) {
-  .header {
-  }
   nav {
     height: 10vh;
     align-items: center;
@@ -128,7 +116,6 @@ a {
   }
   h2 {
     font-size: 6.5vw;
-    /* margin-top: 0vh; */
     /* mix-blend-mode: screen; */
   }
   .error-message {
