@@ -67,6 +67,8 @@ h2 {
   text-shadow: 1px 1px palevioletred;
 }
 
+/*Footer Styles*/
+/************************/
 footer {
   display: flex;
   justify-content: space-around;
@@ -137,5 +139,8 @@ footer {
   }
   h2 {
     height: 20vh;
+  }
+  footer {
+    font-size: 2vw;
   }
 }
