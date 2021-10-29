@@ -2,39 +2,38 @@ const AudioPlayerGroup = {
   template:
     /*html*/
     `<div id="audio-container">
-    <audio
-      id="audio"
-      :src="currentAudioSourcePath"
-      type="audio/wav"
-      preload="metadata"
-    ></audio>
-    <!-- The audio player itself is hidden and referred to by a custom player UI element -->
-    <div class="audio-player" v-for="track in playlist" :key="track.id">
-      <!-- <audio id="track.id" :src="track.path" type="audio/wav" preload="metadata"></audio> -->
-      <div class="audio-ui audio-title marquee"><marquee>{{ track.title }}</marquee></div>
-      <div class="audio-ui audio-ui-container">
-        <button class="audio-ui audio-button" @click="audioPlayPause(track.id)">
-          <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-          <img
-            class="audio-ui audio-icon play-icon"
-            :src="iconImages[durations[track.id].currentlyPlaying]"
-            alt="play"
-          />
-        </button>
-        <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
-        <input
-          type="range"
-          class="audio-ui audio-seeker"
-          :value="durations[track.id].seekerCurrentTime"
-          @change="seek(track.id)"
-          min="0"
-          :max="durations[track.id].rawDuration"
-          step="0.1"
-        />
-        <span class="audio-ui audio-duration">{{ durations[track.id].duration }}</span>
+      <audio
+        id="audio"
+        :src="currentAudioSourcePath"
+        type="audio/wav"
+        preload="metadata">
+      </audio>
+      <!-- The audio player itself is hidden and referred to by a custom player UI element -->
+      <div class="audio-player" v-for="track in playlist" :key="track.id">
+        <!-- <audio id="track.id" :src="track.path" type="audio/wav" preload="metadata"></audio> -->
+        <div class="audio-ui audio-title marquee"><marquee>{{ track.title }}</marquee></div>
+        <div class="audio-ui audio-ui-container">
+          <button class="audio-ui audio-button" @click="audioPlayPause(track.id)">
+            <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+            <img
+              class="audio-ui audio-icon play-icon"
+              :src="iconImages[durations[track.id].currentlyPlaying]"
+              alt="play"
+            />
+          </button>
+          <span class="audio-ui audio-current-time">{{ durations[track.id].currentTime }}</span>
+          <input
+            type="range"
+            class="audio-ui audio-seeker"
+            :value="durations[track.id].seekerCurrentTime"
+            @change="seek(track.id)"
+            min="0"
+            :max="durations[track.id].rawDuration"
+            step="0.1"/>
+          <span class="audio-ui audio-duration">{{ durations[track.id].duration }}</span>
+        </div>
       </div>
-    </div>
-  </div>`,
+    </div>`,
   data: function () {
     return {
       iconImages: ["./assets/play.png", "./assets/pause.png"],
