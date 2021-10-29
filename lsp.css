@@ -94,12 +94,6 @@ a {
   /* mix-blend-mode: screen; */
 }
 
-#audio-container {
-  width: 66%;
-  /* margin-top: 5vh; */
-  margin-left: 17%;
-}
-
 /*Error Page Styles*/
 /************************/
 .error-message {
@@ -136,9 +130,6 @@ a {
     font-size: 6.5vw;
     /* margin-top: 0vh; */
     /* mix-blend-mode: screen; */
-  }
-  #audio-container {
-    margin-top: 0vh;
   }
   .error-message {
     /*overwrites general h2 blend-mode rule*/

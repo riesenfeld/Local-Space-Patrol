@@ -4,6 +4,11 @@
 *  Author: Aron Riesenfeld
 */
 
+#audio-container {
+  width: 66%;
+  margin-left: 17%;
+}
+
 .audio-player {
   display: flex;
   flex-direction: column;
@@ -146,6 +151,10 @@ input[type="range"]::-ms-thumb {
 
 /*If height > width*/
 @media (max-aspect-ratio: 1/1) {
+  #audio-container {
+    width: 70%;
+    margin-left: 15%;
+  }
   .audio-player {
     height: 7vh;
   }
