@@ -1,5 +1,5 @@
 /*
- * Tests whether the browser that has requested localspacepatrol.com
+ * Tests whether the browser that has requested the site
  *    is Internet Explorer 5-11.
  * window.document.documentMode is undefined for all browsers outside of these.
  *
