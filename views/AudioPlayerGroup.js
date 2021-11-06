@@ -61,6 +61,8 @@ const AudioPlayerGroup = {
     }
   },
   methods: {
+    /* Uses this.playlist (audiodata.js) to build the durations array*/
+    constructDurationsArray() {},
     formatTimestamp(time) {
       let minutes = Math.trunc(time / 60)
       let minutesString = minutes + ":"
