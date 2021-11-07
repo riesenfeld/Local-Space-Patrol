@@ -39,22 +39,22 @@ const AudioPlayerGroup = {
       iconImages: ["./assets/play.png", "./assets/pause.png"],
       playlist: audiodata,
       durations: [
-        {
-          id: 0,
-          duration: "",
-          rawDuration: "",
-          currentTime: "00.00",
-          seekerCurrentTime: 0,
-          currentlyPlaying: 0,
-        },
-        //   {
-        //     id: 1,
-        //     duration: "",
-        //     rawDuration: "",
-        //     currentTime: "00.00",
-        //     seekerCurrentTime: 0,
-        //     currentlyPlaying: 0,
-        //   },
+        // {
+        //   id: 0,
+        //   duration: "",
+        //   rawDuration: "",
+        //   currentTime: "00.00",
+        //   seekerCurrentTime: 0,
+        //   currentlyPlaying: 0,
+        // },
+        // {
+        //   id: 1,
+        //   duration: "",
+        //   rawDuration: "",
+        //   currentTime: "00.00",
+        //   seekerCurrentTime: 0,
+        //   currentlyPlaying: 0,
+        // },
       ],
       currentAudioSourcePath: "",
       currentlyPlayingTrack: -1,
@@ -62,7 +62,20 @@ const AudioPlayerGroup = {
   },
   methods: {
     /* Uses this.playlist (audiodata.js) to build the durations array*/
-    constructDurationsArray() {},
+    constructDurationsArray() {
+      let durations = []
+      for (let track of this.playlist) {
+        let obj = {
+          id: track.id,
+          duration: "",
+          currentTime: "00.00",
+          seekerCurrentTime: 0,
+          currentlyPlaying: 0,
+        }
+        durations.push(obj)
+      }
+      this.durations = durations
+    },
     formatTimestamp(time) {
       let minutes = Math.trunc(time / 60)
       let minutesString = minutes + ":"
@@ -144,6 +157,7 @@ const AudioPlayerGroup = {
     },
   },
   mounted() {
+    this.constructDurationsArray()
     this.preloadAudio()
   },
 }
