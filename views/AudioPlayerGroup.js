@@ -39,16 +39,9 @@ const AudioPlayerGroup = {
       iconImages: ["./assets/play.png", "./assets/pause.png"],
       playlist: audiodata,
       durations: [
+        // Constructed on create(). Each element has the following format:
         // {
-        //   id: 0,
-        //   duration: "",
-        //   rawDuration: "",
-        //   currentTime: "00.00",
-        //   seekerCurrentTime: 0,
-        //   currentlyPlaying: 0,
-        // },
-        // {
-        //   id: 1,
+        //   id: 0, (corresponding to its id in playlist)
         //   duration: "",
         //   rawDuration: "",
         //   currentTime: "00.00",
@@ -96,7 +89,8 @@ const AudioPlayerGroup = {
          time the user hits play on a different track, depending on how HTMLAudioElement
          is handled under the hood 
          Could have a different <audio> on the page for each track generated in the v-for*/
-      /*Can also use this function to auto-populate this.durations */
+
+      /* This should cause the browser to fetch and cache each file */
       for (let track of this.playlist) {
         let audioSource = new Audio(track.path)
         audioSource.onloadedmetadata = () => {
@@ -146,9 +140,6 @@ const AudioPlayerGroup = {
         }
       }
     },
-    //  displayMetadata(id) {
-    //    document.getElementById("audio-duration").innerText = formatTime(this.audio.duration)
-    //  },
     seek(id) {
       /* Changes location in the track when the seeker value is changed*/
       let audio = document.getElementById("audio")
