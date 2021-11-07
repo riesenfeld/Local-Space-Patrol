@@ -156,7 +156,7 @@ const AudioPlayerGroup = {
       this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
     },
   },
-  mounted() {
+  created() {
     this.constructDurationsArray()
     this.preloadAudio()
   },
