@@ -161,7 +161,7 @@ const AudioPlayerGroup = {
       this.currentlyPlayingTrack = id
       this.durations[id].currentlyPlaying = 1
 
-      audio.currentTime = time
+      audio.currentTime = time //redundant, but harmless
       this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
       this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
     },
@@ -172,6 +172,7 @@ const AudioPlayerGroup = {
   },
   mounted() {
     let aud = document.getElementById("audio")
+    /* Updates the player timestamp and seeker thumb knob as audio plays */
     aud.ontimeupdate = (event) => {
       this.durations[this.currentlyPlayingTrack].currentTime = this.formatTimestamp(
         audio.currentTime
