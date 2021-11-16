@@ -177,7 +177,7 @@ const AudioPlayerGroup = {
         audio.currentTime
       )
       /*seeker*/
-      // this.durations[this.currentlyPlayingTrack].seekerCurrentTime = audio.currentTime.toFixed(1)
+      this.durations[this.currentlyPlayingTrack].seekerCurrentTime = audio.currentTime.toFixed(1)
     }
     /* Reset currentTime to 00:00 when audio has finished playing */
     aud.onended = () => {
