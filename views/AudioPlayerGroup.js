@@ -172,23 +172,6 @@ const AudioPlayerGroup = {
   },
   mounted() {
     let aud = document.getElementById("audio")
-
-    /******************************************/
-    /*******REMOVE WHEN FINISHED TESTING*******/
-    aud.onplay = (event) => {
-      console.log(`
-      PLAY EVENT DETECTED \n
-      audio.currentTime: ${aud.currentTime}
-      `)
-    }
-    aud.onpause = (event) => {
-      console.log(`
-      PAUSE EVENT DETECTED \n
-      audio.currentTime: ${aud.currentTime}
-      `)
-    }
-    /******************************************/
-
     /* Updates the player timestamp and seeker thumb knob as audio plays */
     aud.ontimeupdate = (event) => {
       this.durations[this.currentlyPlayingTrack].currentTime = this.formatTimestamp(
