@@ -131,7 +131,9 @@ const AudioPlayerGroup = {
     },
     /* Changes location in the track when the seeker value is changed*/
     seek(id) {
+      console.log(`seek called`)
       let audio = document.getElementById("audio")
+      audio.pause()
       let time = parseFloat(event.currentTarget.value)
       if (this.currentlyPlayingTrack != id) {
         this.switchTracks(id, time)
@@ -146,6 +148,7 @@ const AudioPlayerGroup = {
         audio.currentTime = time
         this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
         this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+        audio.play()
       }
     },
     switchTracks(id, time = 0) {
