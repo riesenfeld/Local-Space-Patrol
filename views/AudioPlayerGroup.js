@@ -120,36 +120,181 @@ const AudioPlayerGroup = {
           this.currentAudioSourcePath = this.playlist[id].path
           audio.oncanplaythrough = function () {
             audio.play()
+            audio.oncanplaythrough = null //Remove event handler once media has begun playback
           }
         } else {
           /* Play the same track that is currently paused */
           audio.play()
         }
-        audio.ontimeupdate = () => {
-          /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations[id].currentTime*/
-          this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
-          /*seeker*/
-          this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
-        }
-        /* Reset currentTime to 00:00 when audio has finished playing */
-        audio.onended = () => {
-          this.durations[id].currentTime = "00:00"
-          this.durations[id].currentlyPlaying = 0
-          /* seeker */
-          this.durations[id].seekerCurrentTime = 0
-        }
       }
     },
+    /* Changes location in the track when the seeker value is changed*/
     seek(id) {
-      /* Changes location in the track when the seeker value is changed*/
       let audio = document.getElementById("audio")
-      audio.currentTime = parseFloat(event.currentTarget.value)
+
+      console.log(
+        `seek() called with id ${id}. currentlyPlayingTrack: ${this.currentlyPlayingTrack}`
+      )
+
+      let time = parseFloat(event.currentTarget.value)
+      // this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+      // audio.pause()
+      /* Check whether the seek function has been called on the currently playing track or a different one*/
+
+      /* When a track is playing and a user clicks the seeker bar on that same track, the following occurs:
+       *  1. audio.currentTime is updated to the new value
+       *  2. the seeker and currentTime UI elements are both updated to the new value
+       *  3. the current track does not pause, but continues playing at the new position
+       *
+       * When a track is playing and a user clicks the seeker bar on a different track, the following occurs:
+       *  1. The currently playing track is stopped and its seeker is reset to 0
+       *  2. currentlyPlayingTrack is updated to the id of the track that has been clicked
+       *  3. The new track does not play until the user clicks the play button, at which point,
+       *       the new track plays from the selected timestamp.
+       */
+      if (this.currentlyPlayingTrack != id) {
+        this.switchTracks(id, time)
+        console.log(`Inside seek(): value of audio.currentTime: ${audio.currentTime}`)
+        audio.oncanplaythrough = function () {
+          //Need to reset the time because it gets auto-reset on load(), which is called implicitly.
+          audio.currentTime = time
+          console.log(`Before play(): value of audio.currentTime: ${audio.currentTime}`)
+          audio.play()
+          console.log(`After play(): value of audio.currentTime: ${audio.currentTime}`)
+          audio.oncanplaythrough = null //Remove event handler once media has begun playback
+        }
+        // if (this.currentlyPlayingTrack != -1) {
+        /* Pause any audio if currently playing */
+        // console.log(`YES WE ARE IN HERE`)
+        // audio.pause() //why isn't event handler detecting this?
+        /* When switching tracks, reset currentTime on the old track to 00:00*/
+        // this.durations[this.currentlyPlayingTrack].currentTime = "00.00"
+        /* Why doesn't the button img change? */
+        // this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+        // this.durations[this.currentlyPlayingTrack].seekerCurrentTime = 0
+        // }
+        /*Set currentlyPlayingTrack to the new track */
+        // this.currentlyPlayingTrack = id /* why doesn't the button img change? */
+        /* Set the source path on the <audio> element */
+        // this.currentAudioSourcePath = this.playlist[id].path
+        /* Set the <audio> element's currentTime to what has been selected on the seeker bar. */
+        // console.log(`currentTime on seeker: ${parseFloat(event.currentTarget.value)}`)
+        // audio.currentTime = parseFloat(event.currentTarget.value)
+        // console.log(`audio.currentTime: ${audio.currentTime}`)
+        /* Update the UI timestamp accordingly */
+        // this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+        // this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+        // this.durations[id].currentlyPlaying = 0
+      } else {
+        /* seek() has been called on the player representing the currently playing track */
+        audio.currentTime = time
+        this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+        // this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+        this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+      }
+    },
+    /* Big Questions:
+     * 1. Do we need to call audio.play() on new track or audio.pause() on old track?
+     * 2. Why is audio.play() being called automatically? What is behind it?
+     *
+     */
+    switchTracks(id, time = 0) {
+      let audio = document.getElementById("audio")
+      if (this.currentlyPlayingTrack != -1) {
+        // Reset previous track to 0
+        this.durations[this.currentlyPlayingTrack].currentTime = "00.00"
+        this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+        this.durations[this.currentlyPlayingTrack].seekerCurrentTime = 0
+      }
+      // Set new audio source
+      this.currentAudioSourcePath = this.playlist[id].path
+      this.currentlyPlayingTrack = id
+      this.durations[id].currentlyPlaying = 1
+      // Get currentTime from seeker and apply it to audio and timestamp.
+
+      // audio.currentTime = parseFloat(this.durations[id].seekerCurrentTime)
+      audio.currentTime = time
       this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+      console.log(
+        `unparsed seekerCurrentTime for new track: ${this.durations[id].seekerCurrentTime}`
+      )
+      console.log(`audio.currentTime for new track: ${audio.currentTime}`)
+      this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+      // this.durations[id].currentlyPlaying = 1
+      // this.currentlyPlayingTrack = id
     },
   },
   created() {
     this.constructDurationsArray()
     this.preloadAudio()
+  },
+  mounted() {
+    let aud = document.getElementById("audio")
+
+    aud.onloadstart = (event) => {
+      console.log(`
+       Audio LOADSTART event detected. \n
+       Current source file: ${event.currentTarget.src} \n
+       Value of currentTime: ${event.currentTarget.currentTime} \n
+       `)
+    }
+
+    aud.ontimeupdate = (event) => {
+      // console.log(`
+      //  Audio TIMEUPDATE event detected. \n
+      //  Current source file: ${event.currentTarget.src} \n
+      //  Value of currentTarget.currentTime: ${event.currentTarget.currentTime} \n
+      //  Value of audio.currentTime: ${aud.currentTime} \n
+      //  `)
+
+      /* Update (1) audio-seeker and (2) audio-current-time by updating this.durations[id].currentTime*/
+      // this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
+      this.durations[this.currentlyPlayingTrack].currentTime = this.formatTimestamp(
+        audio.currentTime
+      )
+      /*seeker*/
+      // this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
+      // this.durations[this.currentlyPlayingTrack].seekerCurrentTime = audio.currentTime.toFixed(1)
+    }
+    /* Reset currentTime to 00:00 when audio has finished playing */
+    aud.onended = () => {
+      this.durations[this.currentlyPlayingTrack].currentTime = "00:00"
+      this.durations[this.currentlyPlayingTrack].currentlyPlaying = 0
+      /* seeker */
+      this.durations[this.currentlyPlayingTrack].seekerCurrentTime = 0
+    }
+
+    /* Event Handlers for Debugging, remove when finished. */
+    aud.onpause = (event) => {
+      console.log(`
+       Audio PAUSE event detected. \n
+       Current source file: ${event.currentTarget.src} \n
+       Value of currentTime: ${event.currentTarget.currentTime} \n
+       `)
+    }
+    aud.onplay = (event) => {
+      console.log(`
+       Audio PLAY event detected. \n
+       Current source file: ${event.currentTarget.src} \n
+       Value of currentTime: ${event.currentTarget.currentTime} \n
+       `)
+    }
+    // aud.onseeking = (event) => {
+    //   console.log(`
+    //   ~~~~~~~~~ \n
+    //   SEEKING \n
+    //   currentTime: ${aud.currentTime} \n
+    //   ~~~~~~~~~ \n
+    //   `)
+    // }
+    aud.onseeked = (event) => {
+      console.log(`
+      ~~~~~~~~~ \n
+      SEEKED \n
+      currentTime: ${aud.currentTime} \n
+      ~~~~~~~~~ \n
+      `)
+    }
   },
 }
 
