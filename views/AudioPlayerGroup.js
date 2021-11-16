@@ -26,7 +26,7 @@ const AudioPlayerGroup = {
             type="range"
             class="audio-ui audio-seeker"
             :value="durations[track.id].seekerCurrentTime"
-            @change="seek(track.id)"
+            @input="seek(track.id)"
             min="0"
             :max="durations[track.id].rawDuration"
             step="0.1"/>
@@ -131,9 +131,7 @@ const AudioPlayerGroup = {
     },
     /* Changes location in the track when the seeker value is changed*/
     seek(id) {
-      console.log(`seek called`)
       let audio = document.getElementById("audio")
-      audio.pause()
       let time = parseFloat(event.currentTarget.value)
       if (this.currentlyPlayingTrack != id) {
         this.switchTracks(id, time)
@@ -148,7 +146,6 @@ const AudioPlayerGroup = {
         audio.currentTime = time
         this.durations[id].seekerCurrentTime = audio.currentTime.toFixed(1)
         this.durations[id].currentTime = this.formatTimestamp(audio.currentTime)
-        audio.play()
       }
     },
     switchTracks(id, time = 0) {
@@ -175,6 +172,23 @@ const AudioPlayerGroup = {
   },
   mounted() {
     let aud = document.getElementById("audio")
+
+    /******************************************/
+    /*******REMOVE WHEN FINISHED TESTING*******/
+    aud.onplay = (event) => {
+      console.log(`
+      PLAY EVENT DETECTED \n
+      audio.currentTime: ${aud.currentTime}
+      `)
+    }
+    aud.onpause = (event) => {
+      console.log(`
+      PAUSE EVENT DETECTED \n
+      audio.currentTime: ${aud.currentTime}
+      `)
+    }
+    /******************************************/
+
     /* Updates the player timestamp and seeker thumb knob as audio plays */
     aud.ontimeupdate = (event) => {
       this.durations[this.currentlyPlayingTrack].currentTime = this.formatTimestamp(
