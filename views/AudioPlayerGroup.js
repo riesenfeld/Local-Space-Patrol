@@ -6,7 +6,7 @@ const AudioPlayerGroup = {
         id="audio"
         :src="currentAudioSourcePath"
         type="audio/wav"
-        preload="metadata">
+        preload="auto">
       </audio>
       <!-- The audio player itself is hidden and referred to by a custom player UI element -->
       <div class="audio-player" v-for="track in playlist" :key="track.id">
@@ -118,11 +118,11 @@ const AudioPlayerGroup = {
           }
           this.currentlyPlayingTrack = id
           this.currentAudioSourcePath = this.playlist[id].path
-          //audio.load() /* Take this out? Audio should all be preloaded. Don't need to reload it.*/
           audio.oncanplaythrough = function () {
             audio.play()
           }
         } else {
+          /* Play the same track that is currently paused */
           audio.play()
         }
         audio.ontimeupdate = () => {
