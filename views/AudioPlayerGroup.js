@@ -118,7 +118,7 @@ const AudioPlayerGroup = {
           }
           this.currentlyPlayingTrack = id
           this.currentAudioSourcePath = this.playlist[id].path
-          audio.load()
+          //audio.load() /* Take this out? Audio should all be preloaded. Don't need to reload it.*/
           audio.oncanplaythrough = function () {
             audio.play()
           }
