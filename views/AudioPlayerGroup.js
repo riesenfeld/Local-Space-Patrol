@@ -5,7 +5,7 @@ const AudioPlayerGroup = {
       <audio
         id="audio"
         :src="currentAudioSourcePath"
-        type="audio/wav"
+        type="audio/mpeg"
         preload="auto">
       </audio>
       <!-- The audio player itself is hidden and referred to by a custom player UI element -->
