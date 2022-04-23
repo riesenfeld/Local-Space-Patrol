@@ -6,7 +6,7 @@
     >
       <!-- loca<span>l</span>spac<span>e</span>patro<span>l</span>bookin<span>g</span>@gmail.com -->
       <span>local</span><span>space</span><span>patrol</span><span>booking</span
-      ><span>@gmail.com</span>
+      ><span><span>@</span>gmail.com</span>
     </a>
     <a
       class="footer-link bandcamp"
@@ -45,6 +45,6 @@ footer {
 
 .footer-link span {
   /* letter-spacing: 2px; */
-  margin-right: 2px;
+  margin-right: 1px;
 }
 </style>
