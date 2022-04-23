@@ -77,26 +77,6 @@ h2 {
   text-shadow: 1px 1px palevioletred;
 }
 
-/*Footer Styles*/
-/************************/
-footer {
-  display: flex;
-  justify-content: space-around;
-
-  position: absolute;
-  bottom: 3vh;
-  width: 100%;
-
-  font-size: 2.5vw;
-}
-
-.footer-link {
-  color: rgba(150, 20, 150, 1);
-  text-shadow: 2px 2px 3px rgba(20, 20, 80, 1),
-    -2px -2px 3px rgba(20, 20, 80, 1), -2px 2px 3px rgba(20, 20, 80, 1),
-    2px -2px 3px rgba(20, 20, 80, 1);
-}
-
 /*Error Page Styles*/
 /************************/
 .error-message {
