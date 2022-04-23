@@ -95,9 +95,6 @@ footer {
   text-shadow: 2px 2px 3px rgba(20, 20, 80, 1),
     -2px -2px 3px rgba(20, 20, 80, 1), -2px 2px 3px rgba(20, 20, 80, 1),
     2px -2px 3px rgba(20, 20, 80, 1);
-
-  /* text-shadow: 1.5px 1.5px rgba(169, 173, 15, 1); */
-  /* mix-blend-mode: screen; */
 }
 
 /*Error Page Styles*/
