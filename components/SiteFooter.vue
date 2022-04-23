@@ -47,4 +47,10 @@ footer {
   /* letter-spacing: 2px; */
   margin-right: 1px;
 }
+
+@media (orientation: portrait) and (max-width: 600px) {
+  footer {
+    font-size: 3vw;
+  }
+}
 </style>
