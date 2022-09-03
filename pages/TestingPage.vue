@@ -14,7 +14,7 @@
 export default {
   async asyncData() {
     const response = await fetch(
-      'http://localhost:8888/.netlify/functions/fetch-tracks'
+      'https://fantastic-biscuit-65517c.netlify.app/.netlify/functions/fetch-tracks'
     )
     console.log(response)
     return {
