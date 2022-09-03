@@ -1,3 +1,25 @@
+// import { createStore } from 'vuex'
+
+// export default createStore({
+//   state: {
+//     audiodata: [],
+//   },
+
+//   getters: {
+//     getAudioData(state) {
+//       return state.audiodata
+//     },
+//   },
+
+//   mutations: {
+//     ADD_TRACK(state, track) {
+//       state.tracks.push(track)
+//     },
+//   },
+
+//   actions: {},
+// })
+
 export const state = () => ({
   audiodata: [
     {
@@ -8,4 +30,4 @@ export const state = () => ({
   ],
 })
 
-export const mutations = {}
+// export const mutations = {}
