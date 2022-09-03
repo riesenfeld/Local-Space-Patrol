@@ -1,12 +1,13 @@
 <template>
   <div>
     <h2>Tracks</h2>
-    <div v-for="track in tracks" :key="track.id">
-      <h3>{{ track }}</h3>
-      <!-- <h4>object id: {{ track.id }}</h4> -->
-      <!-- <h4>media id: {{ track.metadata.media_data.id }}</h4> -->
-      <!-- <audio controls :src="track.metadata.audio.url"></audio> -->
-    </div>
+    {{ tracks }}
+    <!-- <div v-for="track in tracks" :key="track.id"> -->
+    <!-- <h3>{{ track }}</h3> -->
+    <!-- <h4>object id: {{ track.id }}</h4> -->
+    <!-- <h4>media id: {{ track.metadata.media_data.id }}</h4> -->
+    <!-- <audio controls :src="track.metadata.audio.url"></audio> -->
+    <!-- </div> -->
   </div>
 </template>
 
