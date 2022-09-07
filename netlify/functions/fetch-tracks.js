@@ -12,9 +12,7 @@ const getObjects = async function () {
 }
 
 exports.handler = async function () {
-  const response = {
-    tracks: await getObjects(),
-  }
+  const response = await getObjects()
 
   return {
     statusCode: 200,
