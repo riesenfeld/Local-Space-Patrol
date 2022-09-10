@@ -14,12 +14,25 @@
 <script>
 export default {
   async asyncData() {
-    const response = await fetch(
-      'https://fantastic-biscuit-65517c.netlify.app/.netlify/functions/fetch-tracks'
-    )
-    const json = await response.json()
-    return {
-      tracks: json.objects,
+    // const response = await fetch(
+    //   'https://fantastic-biscuit-65517c.netlify.app/.netlify/functions/fetch-tracks'
+    // )
+    // const json = await response.json()
+    // return {
+    //   tracks: json.objects,
+    // }
+    if (process.server) {
+      const response = await fetch(
+        `https://api.cosmicjs.com/v2/buckets/${
+          process.env.BUCKET_SLUG
+        }/objects?read_key=${process.env.READ_KEY}&query=${encodeURIComponent(
+          `{ "type": "${process.env.OBJECT_TYPE}" }`
+        )}`
+      )
+      const json = await response.json()
+      return {
+        tracks: json.objects,
+      }
     }
   },
   data() {
