@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Tracks</h1>
+    <h1>Tracks without Netlify Functions</h1>
     <div v-for="track in tracks" :key="track.id">
       <h2>{{ track.title }}</h2>
       <h3>Published at: {{ makeDateTime(track.published_at) }}</h3>
